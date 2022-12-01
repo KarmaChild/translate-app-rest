@@ -1,7 +1,7 @@
 const prompt = require("prompt-sync")()
 const axios = require("axios")
 
-const url = 'http://localhost:3000/post'
+const url = 'http://app:3000/post'
 
 
 
