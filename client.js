@@ -7,8 +7,7 @@ const url = 'http://localhost:3000/post'
 
 const word = prompt("Enter english word for translation:");
 let args = {
-    word: word,
-    language: "es"
+    word: word
 };
 
 

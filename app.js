@@ -1,25 +1,23 @@
 const express = require('express');
-const translate = require("translate");
+const translate = require('translate-google')
 const app = express();
 const cors = require("cors");
 const port = 3000
 app.use(express.json());
 app.use(cors());
 
-
-const translateString =  async (args) => {
-    translate.engine = "google"; // Or "yandex", "libre", "deepl"
-    translate.key = process.env.GOOGLE_KEY;
-    const translated =  await translate(args.word,args.language)
-
-    console.log(translated)
-    return translated
+let TranslateConfig = {
+    from: 'en',
+    to: 'es'
 }
 
-
 app.post('/post', (req, res) => {
-    let translated = translateString(req.body)
-    res.send(translated)
+    translate(req.body.word,TranslateConfig).then(result => {
+        console.log(result)
+        res.send(req.body.word + " : " + result)
+    }).catch(err => {
+        console.log(err)
+    })
 })
 
 
